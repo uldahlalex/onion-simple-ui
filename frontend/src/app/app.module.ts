@@ -16,6 +16,7 @@ import {RouterModule, RouterOutlet, Routes} from "@angular/router";
 import {AuthguardService} from "../services/authguard.service";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {
@@ -46,7 +47,8 @@ const routes: Routes = [
     MatCardModule,
     RouterOutlet,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [MatSnackBar, Overlay],
   bootstrap: [AppComponent]

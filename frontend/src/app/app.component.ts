@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {customAxios, HttpService} from "../services/http.service";
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError, ActivatedRoute} from '@angular/router';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {Router, Event, NavigationStart, NavigationEnd, NavigationError, Activate
 export class AppComponent {
   currentRoute: string = "";
   constructor(private router: Router,
-              public http: HttpService) {
+              public http: HttpService,
+              private snackBar: MatSnackBar) {
 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -33,6 +35,8 @@ export class AppComponent {
 
   logOut() {
     localStorage.setItem('token', '');
-    this.router.navigate(['login'])
+    this.router.navigate(['login']).then(() => {
+      this.snackBar.open('You have now been logged out', undefined, {duration: 3000})
+    })
   }
 }

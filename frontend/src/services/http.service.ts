@@ -70,6 +70,7 @@ export class HttpService {
     customAxios.post<string>('auth/login', dto).then(successResult => {
       localStorage.setItem('token', successResult.data);
       this.router.navigate(['./products'])
+      this.matSnackbar.open("Welcome", undefined, {duration: 3000})
     })
   }
 
@@ -78,6 +79,7 @@ export class HttpService {
     customAxios.post('auth/register', param).then(successResult => {
       localStorage.setItem('token', successResult.data);
       this.router.navigate(['./products'])
+      this.matSnackbar.open("You have been registered", undefined, {duration: 3000});
     })
   }
 }
