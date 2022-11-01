@@ -1,0 +1,13 @@
+<p>
+  <mat-toolbar>
+    <span style="flex: 1 1 auto;">Product application</span>
+    <button slot="end" mat-raised-button (click)="switchBetweenLoginAndProducts()">
+      <span *ngIf="currentRoute=='/products'">Navigate to login</span>
+      <span *ngIf="currentRoute=='/login'">Navigate to products</span>
+    </button>
+    <button mat-stroked-button slot="end">
+      <span (click)="logOut()" >Log me out</span>
+    </button>
+  </mat-toolbar>
+</p>
+<router-outlet></router-outlet>
