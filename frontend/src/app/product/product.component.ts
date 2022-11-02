@@ -11,8 +11,6 @@ export class ProductComponent implements OnInit{
 
   constructor(public http: HttpService) {}
 
-
-
   productName: string = "";
   productPrice: number = 0;
 
@@ -24,4 +22,5 @@ export class ProductComponent implements OnInit{
   ngOnInit(): void {
     this.http.getProducts();
   }
+
 }

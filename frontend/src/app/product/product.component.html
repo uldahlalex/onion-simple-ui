@@ -10,7 +10,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Product price</mat-label>
     <mat-select [(ngModel)]="productPrice">
-      <mat-option *ngFor="let i of [1,2,3,4]" [value]="i">
+      <mat-option *ngFor="let i of [1,2,3,4]" [value]="i*10">
         {{i}}
       </mat-option>
     </mat-select>
@@ -31,6 +31,7 @@
       </mat-card-actions>
     </div>
   </mat-card>
+
 
 </div>
 

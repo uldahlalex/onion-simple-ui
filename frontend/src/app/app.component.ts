@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {customAxios, HttpService} from "../services/http.service";
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError, ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import jwtDecode from "jwt-decode";
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,17 @@ export class AppComponent {
   constructor(private router: Router,
               public http: HttpService,
               private snackBar: MatSnackBar) {
-
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
       }
     });
+    let t = localStorage.getItem('token') as any;
+    if(t) {
+      let decoded = jwtDecode(t) as any;
+      this.http.userName = decoded.email;
+    }
+
   }
 
   route() {
@@ -34,9 +40,10 @@ export class AppComponent {
   }
 
   logOut() {
-    localStorage.setItem('token', '');
     this.router.navigate(['login']).then(() => {
       this.snackBar.open('You have now been logged out', undefined, {duration: 3000})
+      localStorage.setItem('token', '');
+      this.http.userName = undefined;
     })
   }
 }

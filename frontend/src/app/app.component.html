@@ -1,12 +1,14 @@
 <mat-toolbar>
-  <span style="flex: 1 1 auto;">Product application</span>
+  <span style="flex: 1 1 auto;">Product application
+  <p *ngIf="http.userName!=undefined && http.userName!=''">{{http.userName}}</p></span>
   <button slot="end" mat-raised-button (click)="switchBetweenLoginAndProducts()">
     <span *ngIf="currentRoute=='/products'">Navigate to login</span>
     <span *ngIf="currentRoute=='/login'">Navigate to products</span>
   </button>
-  <button mat-stroked-button slot="end">
-    <span (click)="logOut()">Log me out</span>
+  <button mat-stroked-button slot="end" *ngIf="http.userName!=undefined && http.userName!=''">
+    <span (click)="logOut()">Sign {{http.userName}} out</span>
   </button>
+
 </mat-toolbar>
 
 <router-outlet></router-outlet>

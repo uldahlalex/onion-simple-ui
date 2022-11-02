@@ -19,6 +19,7 @@ export const customAxios = axios.create({
 export class HttpService {
 
   products: Product[] = [];
+  userName: any;
 
 
   constructor(private matSnackbar: MatSnackBar,
@@ -69,6 +70,8 @@ export class HttpService {
   async login(dto: any) {
     customAxios.post<string>('auth/login', dto).then(successResult => {
       localStorage.setItem('token', successResult.data);
+      let t = jwtDecode(successResult.data) as User;
+      this.userName = t.email;
       this.router.navigate(['./products'])
       this.matSnackbar.open("Welcome", undefined, {duration: 3000})
     })
@@ -92,3 +95,6 @@ interface Product {
   expanded: boolean
 }
 
+ interface User {
+  email: string
+}
