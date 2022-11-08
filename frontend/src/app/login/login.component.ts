@@ -9,9 +9,10 @@ import {HttpService} from "../../services/http.service";
 export class LoginComponent  {
   email: any;
   password: any;
+  htmlSnippet: string =//"<img src onerror=\"alert(\"youve been hacked\")>";
+   "<script>alert(\"attempt to hack\")</script><b>other html tag</b>";
 
   constructor(public http: HttpService) { }
-
 
 
 

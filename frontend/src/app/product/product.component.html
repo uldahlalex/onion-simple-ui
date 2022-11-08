@@ -19,7 +19,9 @@
   <button [disabled]="productName=='' || productPrice<1" mat-raised-button
           (click)="http.createProduct({name: productName,price: productPrice})">Add product</button>
 
-  <mat-card style="margin-top: 30px;" *ngFor="let p of http.products" (click)="toggleExpand(p)">
+  <input matInput placeholder="Filter by" [(ngModel)]="searchTerm">
+
+  <mat-card style="margin-top: 30px;" *ngFor="let p of http.products | filter : searchTerm" (click)="toggleExpand(p)">
    <mat-card-title style="display: inline;">{{p.name}}</mat-card-title>
     <mat-icon style="display: inline; float: right;" *ngIf="p.expanded!=true">keyboard_arrow_down</mat-icon>
     <mat-icon style="display: inline; float: right;" *ngIf="p.expanded==true">keyboard_arrow_up</mat-icon>

@@ -1,6 +1,6 @@
 <mat-toolbar>
   <span style="flex: 1 1 auto;">Product application
-  <p *ngIf="http.userName!=undefined && http.userName!=''">{{http.userName}}</p></span>
+  </span>
   <button slot="end" mat-raised-button (click)="switchBetweenLoginAndProducts()">
     <span *ngIf="currentRoute=='/products'">Navigate to login</span>
     <span *ngIf="currentRoute=='/login'">Navigate to products</span>

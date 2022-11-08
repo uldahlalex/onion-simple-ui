@@ -19,7 +19,7 @@ export class AppComponent {
         this.currentRoute = event.url;
       }
     });
-    let t = localStorage.getItem('token') as any;
+    let t = localStorage.getItem('token')
     if(t) {
       let decoded = jwtDecode(t) as any;
       this.http.userName = decoded.email;
@@ -42,7 +42,7 @@ export class AppComponent {
   logOut() {
     this.router.navigate(['login']).then(() => {
       this.snackBar.open('You have now been logged out', undefined, {duration: 3000})
-      localStorage.setItem('token', '');
+      localStorage.clear();
       this.http.userName = undefined;
     })
   }

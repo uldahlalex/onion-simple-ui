@@ -3,14 +3,11 @@ import axios from 'axios';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {catchError} from "rxjs";
 import {ProductComponent} from "../app/product/product.component";
-import {Router} from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import jwtDecode from "jwt-decode";
 
 export const customAxios = axios.create({
-  baseURL: 'http://localhost:5000',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  }
+  baseURL: 'http://localhost:5000'
 })
 
 @Injectable({
@@ -41,9 +38,12 @@ export class HttpService {
     );
     customAxios.interceptors.request.use(
       async config => {
-        config.headers = {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        if(localStorage.getItem('token')) {
+          config.headers = {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
         }
+
         return config;
       },
       error => {
@@ -52,9 +52,15 @@ export class HttpService {
   }
 
 
-  async getProducts() {
-    const httpResponse = await customAxios.get<Product[]>('product');
-    this.products = httpResponse.data;
+    getProducts() {
+     customAxios.get<Product[]>('product').then(success => {
+      console.log(success);
+      this.products = success.data;
+    }).catch(e => {
+      console.log(e);
+    })
+     console.log('now were are executing this');
+    //this.products = httpResponse.data;
   }
 
   async createProduct(dto: { price: number; name: string }) {
@@ -97,4 +103,14 @@ interface Product {
 
  interface User {
   email: string
+}
+@Injectable({providedIn: 'root'})
+export class MyResolver implements Resolve<any> {
+  constructor(private http: HttpService) {
+  }
+  async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
+    await this.http.getProducts();
+    return true;
+  }
+
 }

@@ -14,3 +14,9 @@
   <button mat-flat-button color="accent" (click)="http.register({role: 'Admin', email: email, password: password})">Register</button>
 
 </div>
+
+<h3>Binding innerHTML</h3>
+<p>Bound value:</p>
+<p class="e2e-inner-html-interpolated">{{htmlSnippet}}</p>
+<p>Result of binding to innerHTML:</p>
+<p class="e2e-inner-html-bound" [innerText]="htmlSnippet"></p>

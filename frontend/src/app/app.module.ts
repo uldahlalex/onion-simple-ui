@@ -11,16 +11,17 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Overlay} from "@angular/cdk/overlay";
 import { LoginComponent } from './login/login.component';
-import { ProductComponent } from './product/product.component';
+import {FilterPipe, ProductComponent} from './product/product.component';
 import {RouterModule, RouterOutlet, Routes} from "@angular/router";
 import {AuthguardService} from "../services/authguard.service";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
+import {MyResolver} from "../services/http.service";
 
 const routes: Routes = [
   {
-    path: 'products', component: ProductComponent, canActivate: [AuthguardService]
+    path: 'products', component: ProductComponent, canActivate: [AuthguardService], resolve: [MyResolver]
   },
   {
     path: 'login', component: LoginComponent
@@ -34,7 +35,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductComponent
+    ProductComponent,
+    FilterPipe,
   ],
   imports: [
     RouterModule.forRoot(routes),
