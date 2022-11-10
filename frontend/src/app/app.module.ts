@@ -47,7 +47,6 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    RouterOutlet,
     MatToolbarModule,
     MatIconModule,
     MatSelectModule
