@@ -5,9 +5,10 @@ import {catchError} from "rxjs";
 import {ProductComponent} from "../app/product/product.component";
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import jwtDecode from "jwt-decode";
+import {environment} from "../environments/environment";
 
 export const customAxios = axios.create({
-  baseURL: 'http://localhost:5000'
+  baseURL: environment.baseUrl
 })
 
 @Injectable({
