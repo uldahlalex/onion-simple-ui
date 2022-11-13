@@ -1,4 +1,4 @@
 export const environment = {
-  url: 'mydeployedrestapionazure.com',
+  baseUrl: 'mydeployedrestapionazure.com',
   production: true
 };
