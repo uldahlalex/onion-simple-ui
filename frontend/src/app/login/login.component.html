@@ -6,30 +6,30 @@
     <mat-label>Email</mat-label>
     <input [(ngModel)]="email" matInput>
   </mat-form-field>
-  <input [(ngModel)]="dlkfdj" matInput type="password">
+  <input [(ngModel)]="password" matInput type="password">
   <br>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Password</mat-label>
-    <input [(ngModel)]="dlkfdj" matInput type="password">
+    <input [(ngModel)]="password" matInput type="password">
 
   </mat-form-field>
   <br>
-  <button mat-flat-button color="primary" (click)="http.login({email: email, password: dlkfdj})">Log in</button>
-  <button id="myregisterbutton" mat-flat-button color="accent" (click)="http.register({role: 'Admin', email: email, password: dlkfdj})">Register</button>
+  <button mat-flat-button color="primary" (click)="http.login({email: email, password: password})">Log in</button>
+  <button mat-flat-button color="accent" (click)="http.register({role: 'Admin', email: email, password: password})">Register</button>
 
   <form [formGroup]="formGroup">
     <mat-form-field class="example-full-width" appearance="fill">
-    <input formControlName="email" matInput placeholder="put your email here">
+    <input [formControl]="emailControl" matInput placeholder="put your email here">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width" appearance="fill">
-    <input formControlName="whatever" matInput placeholder="put text here">
+    <input [formControl]="whatever" matInput placeholder="put text here">
     </mat-form-field>
     <br>
-    <mat-checkbox formControlName="checkBox">spam me</mat-checkbox>&nbsp;
+    <mat-checkbox [formControl]="checkBox">spam me</mat-checkbox>&nbsp;
     <button [style]="email==''&&2+2==4 ? 'background-color: #ffffff' : 'background-color: #00ff00'" [disabled]="!formGroup.valid" mat-raised-button>Submit</button>
     <input placeholder="email">
-    <input placeholder="{{dlkfdj}}">
+    <input placeholder="{{password}}">
 
     <input [placeholder]="email">
     <input placeholder="salkjdsflkjds">

@@ -36,23 +36,26 @@ import {NgStyle} from "@angular/common";
 })
 export class LoginComponent {
   email: any;
-  dlkfdj: any;
+  password: any;
+  emailControl =new FormControl('', [
+    Validators.required,
+  Validators.email
+]);
+  whatever = new FormControl('', [
+    Validators.required,
+  Validators.minLength(3)
+]);
+  checkBox = new FormControl(false, [
+    Validators.requiredTrue
+    ])
+  formGroup = this.formBuilder.group({
+    email: this.emailControl,
+    whatever: this.whatever,
+    checkBox: this.checkBox
+  });
 
-  formGroup: FormGroup;
   constructor(public http: HttpService,
               private formBuilder: FormBuilder) {
-    this.formGroup = this.formBuilder.group({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      whatever: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      checkBox: new FormControl(false, [
-        Validators.requiredTrue
-      ])
-    })
+
   }
 }
