@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
@@ -18,6 +18,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import {MyResolver} from "../services/http.service";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 const routes: Routes = [
   {
@@ -34,7 +35,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     ProductComponent,
     FilterPipe,
   ],
@@ -49,7 +49,9 @@ const routes: Routes = [
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [MatSnackBar, Overlay],
   bootstrap: [AppComponent]
